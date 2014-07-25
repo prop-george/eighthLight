@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         checkForWin()
         turn++
         
-     }
+    }
     
     func setImageForSpot(spot:Int, player:Int){
         var playerMark = player == 1 ? "x" : "o"
@@ -293,7 +293,7 @@ class ViewController: UIViewController {
     }
     
     func checkForWin(){
-        var winner = ["Player 1":3, "Player 2":5]
+        var winner = ["You":3, "The computer":5]
         for(key, value) in winner {
             if((Board[1]==value && Board[2]==value && Board[3]==value) ||
                 (Board[4]==value && Board[5]==value && Board[6]==value) ||
@@ -303,12 +303,40 @@ class ViewController: UIViewController {
                 (Board[3]==value && Board[6]==value && Board[9]==value) ||
                 (Board[1]==value && Board[5]==value && Board[9]==value) ||
                 (Board[3]==value && Board[5]==value && Board[7]==value) ){
+                    Message.hidden = false
+                    Message.text = "\(key) won!"
+                    Reset.hidden = false
+                    done = true
+            }
+            else if (turn == 9){
                 Message.hidden = false
-                Message.text = "\(key) is the winner!"
+                Message.text = "We tied!"
                 Reset.hidden = false
                 done = true
             }
+            
         }
+    }
+    
+    @IBAction func resetTouch(sender:UIButton){
+    done = false
+    Reset.hidden = true
+    Message.hidden = true
+        reset()
+    }
+    
+    func reset (){
+        Board = [1:2,2:2,3:2,4:2,5:2,6:2,7:2,8:2,9:2]
+        Image1.image = nil
+        Image2.image = nil
+        Image3.image = nil
+        Image4.image = nil
+        Image5.image = nil
+        Image6.image = nil
+        Image7.image = nil
+        Image8.image = nil
+        Image9.image = nil
+        turn = 1
     }
     
     override func viewDidLoad() {
