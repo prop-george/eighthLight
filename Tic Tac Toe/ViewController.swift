@@ -3,8 +3,14 @@
 //  Tic Tac Toe
 //
 //  Created by George Drag on 7/12/14.
-//  Copyright (c) 2014 George Drag. All rights reserved.
+// Copyright (c) 2014 George Drag. All rights reserved.
 //
+//
+// TODOs: add some clear and helpful commenting to the code!
+//      : track wins, losses and ties (scoreboard)
+//      : experiment with different AIs allowing user to set difficulty            level for more realistic opponent
+//      : Add timer to make computer pause before making move
+
 
 import UIKit
 
