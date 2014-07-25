@@ -6,6 +6,10 @@
 // Copyright (c) 2014 George Drag. All rights reserved.
 //
 //
+//  *** BUG WHERE AI IS NOT BLOCKING POTENTIAL FORKS, 
+//                and sometimes not taking the win!  ***
+//  *** July 25  -  FIX THIS ASAP                    ***
+//
 // TODOs: add some clear and helpful commenting to the code!
 //      : track wins, losses and ties (scoreboard)
 //      : experiment with different AIs allowing user to set difficulty            level for more realistic opponent
@@ -45,7 +49,6 @@ class ViewController: UIViewController {
     var done = false
     var aiDeciding = false
     
-    
     @IBAction func ButtonClicked(sender:UIButton){
         Message.hidden = true
         
@@ -69,7 +72,7 @@ class ViewController: UIViewController {
             Board[spot]=5
         }
         checkForWin()
-        turn++
+       
         
     }
     
@@ -96,24 +99,44 @@ class ViewController: UIViewController {
         default :
             Image9.image = UIImage(named: playerMark)
         }
+         turn++
         
     }
     
     func make2() -> Int{
-        if (Board[5]==2){
+        let b1 = Board[1]
+        let b2 = Board[2]
+        let b3 = Board[3]
+        let b4 = Board[4]
+        let b5 = Board[5]
+        let b6 = Board[6]
+        let b7 = Board[7]
+        let b8 = Board[8]
+        let b9 = Board[9]
+        
+        if (b5==2){
             return 5
         }
+        /* check for forks 45 or 75
+        if (b1! * b5! * b9! == 45 || b1! * b5! * b9! == 75) {
+        return 3
+        }
         
-        if (Board[2]==2){
+        if (b3! * b5! * b7! == 45 || b3! * b5! * b7! == 75) {
             return 2
         }
-        else if (Board[4]==2){
+        
+        if (b2==2){
+            return 2
+        }
+*/
+        else if (b4==2){
             return 4
         }
-        else if (Board[6]==2){
+        else if (b6==2){
             return 6
         }
-        else if (Board[8]==2){
+        else if (b8==2){
             return 8
         }
         return 0
@@ -131,6 +154,8 @@ class ViewController: UIViewController {
         let b8 = Board[8]
         let b9 = Board[9]
         
+        NSLog(turn.description)
+        
         if(b1! * b2! * b3! == 18 || b1! * b2! * b3! == 50) {
             if(b1==2){
                 return 1
@@ -142,7 +167,7 @@ class ViewController: UIViewController {
                 return 3
             }
         }
-        else if(b4! * b5! * b6! == 18 || b4! * b5! * b6! == 50) {
+        if(b4! * b5! * b6! == 18 || b4! * b5! * b6! == 50) {
             if(b4==2){
                 return 4
             }
@@ -153,7 +178,7 @@ class ViewController: UIViewController {
                 return 6
             }
         }
-        else if(b7! * b8! * b9! == 18 || b7! * b8! * b9! == 50) {
+        if(b7! * b8! * b9! == 18 || b7! * b8! * b9! == 50) {
             if(b7==2){
                 return 7
             }
@@ -166,7 +191,7 @@ class ViewController: UIViewController {
             
         }
             
-        else if(b1! * b4! * b7! == 18 || b1! * b4! * b7! == 50) {
+        if(b1! * b4! * b7! == 18 || b1! * b4! * b7! == 50) {
             if(b1==2){
                 return 1
             }
@@ -178,7 +203,7 @@ class ViewController: UIViewController {
             }
         }
             
-        else if(b2! * b5! * b8! == 18 || b2! * b5! * b8! == 50) {
+        if(b2! * b5! * b8! == 18 || b2! * b5! * b8! == 50) {
             if(b2==2){
                 return 2
             }
@@ -189,7 +214,7 @@ class ViewController: UIViewController {
                 return 8
             }
         }
-        else if(b3! * b6! * b9! == 18 || b3! * b6! * b9! == 50) {
+        if(b3! * b6! * b9! == 18 || b3! * b6! * b9! == 50) {
             if(b3==2){
                 return 3
             }
@@ -200,7 +225,7 @@ class ViewController: UIViewController {
                 return 9
             }
         }
-        else if(b1! * b5! * b9! == 18 || b1! * b5! * b9! == 50) {
+        if(b1! * b5! * b9! == 18 || b1! * b5! * b9! == 50) {
             if(b1==2){
                 return 1
             }
@@ -211,7 +236,7 @@ class ViewController: UIViewController {
                 return 9
             }
         }
-        else if(b3! * b5! * b7! == 18 || b3! * b5! * b7! == 50) {
+        if(b3! * b5! * b7! == 18 || b3! * b5! * b7! == 50) {
             if(b3==2){
                 return 3
             }
